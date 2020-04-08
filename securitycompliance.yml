@@ -5,4 +5,5 @@
   port: 22
   gather_facts: no
   roles:
-  - selinux
+  - ctrlselinux
+  - ctrlnist800

@@ -1,0 +1,10 @@
+---
+# tasks file for roles/ctrlnist800
+
+- name: SELINUX | NIST-800 | Identifier des controles NIST-800-171-cui Linux RH7
+  import_tasks: rhel7-role-nist-800-171-cui.yml
+  tags:
+    - rhel7-role-nist-800-171-cui
+    - nist-800
+    - noncis
+    - RedHat7
