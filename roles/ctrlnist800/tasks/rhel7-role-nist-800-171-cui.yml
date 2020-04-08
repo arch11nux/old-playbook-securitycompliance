@@ -16,7 +16,7 @@
   - NIST-800-53-AU-9
   - DISA-STIG-RHEL-07-031000
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit ftruncate tasks
   set_fact:
@@ -70,7 +70,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030550
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the ftruncate rule in rules.d when on x86_64
   lineinfile:
@@ -80,7 +80,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_ftruncate
   - medium_severity
@@ -129,7 +129,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030550
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the ftruncate rule in audit.rules when on x86_64
   lineinfile:
@@ -140,7 +140,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_ftruncate
   - medium_severity
@@ -213,7 +213,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030500
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the creat rule in rules.d when on x86_64
   lineinfile:
@@ -223,7 +223,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_creat
   - medium_severity
@@ -272,7 +272,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030500
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the creat rule in audit.rules when on x86_64
   lineinfile:
@@ -283,7 +283,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_creat
   - medium_severity
@@ -356,7 +356,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030540
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the truncate rule in rules.d when on x86_64
   lineinfile:
@@ -366,7 +366,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_truncate
   - medium_severity
@@ -415,7 +415,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030540
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the truncate rule in audit.rules when on x86_64
   lineinfile:
@@ -426,7 +426,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_truncate
   - medium_severity
@@ -499,7 +499,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030510
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the open rule in rules.d when on x86_64
   lineinfile:
@@ -509,7 +509,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_open
   - medium_severity
@@ -558,7 +558,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030510
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the open rule in audit.rules when on x86_64
   lineinfile:
@@ -569,7 +569,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_open
   - medium_severity
@@ -642,7 +642,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030520
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the openat rule in rules.d when on x86_64
   lineinfile:
@@ -652,7 +652,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_openat
   - medium_severity
@@ -701,7 +701,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030520
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the openat rule in audit.rules when on x86_64
   lineinfile:
@@ -712,7 +712,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_openat
   - medium_severity
@@ -785,7 +785,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030530
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the open_by_handle_at rule in rules.d when on x86_64
   lineinfile:
@@ -795,7 +795,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_open_by_handle_at
   - medium_severity
@@ -844,7 +844,7 @@
   - PCI-DSS-Req-10.2.1
   - DISA-STIG-RHEL-07-030530
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the open_by_handle_at rule in audit.rules when on x86_64
   lineinfile:
@@ -855,7 +855,7 @@
   with_items:
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_unsuccessful_file_modification_open_by_handle_at
   - medium_severity
@@ -912,7 +912,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030560
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the semanage rule in audit.rules
   lineinfile:
@@ -930,7 +930,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030560
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -967,7 +967,7 @@
   - NIST-800-53-AU-12(c)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the restorecon rule in audit.rules
   lineinfile:
@@ -984,7 +984,7 @@
   - NIST-800-53-AU-12(c)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -1022,7 +1022,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030580
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chcon rule in audit.rules
   lineinfile:
@@ -1040,7 +1040,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030580
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -1078,7 +1078,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030570
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the setsebool rule in audit.rules
   lineinfile:
@@ -1096,7 +1096,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030570
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit lastlog tasks
   set_fact:
@@ -1144,7 +1144,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030620
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lastlog rule in /etc/audit/audit.rules
   lineinfile:
@@ -1167,7 +1167,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030620
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit tallylog tasks
   set_fact:
@@ -1215,7 +1215,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030600
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the tallylog rule in /etc/audit/audit.rules
   lineinfile:
@@ -1238,7 +1238,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030600
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit faillock tasks
   set_fact:
@@ -1286,7 +1286,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030610
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the faillock rule in /etc/audit/audit.rules
   lineinfile:
@@ -1309,7 +1309,7 @@
   - PCI-DSS-Req-10.2.3
   - DISA-STIG-RHEL-07-030610
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit lsetxattr tasks
   set_fact:
@@ -1360,14 +1360,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030460
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lsetxattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lsetxattr
   - unknown_severity
@@ -1413,7 +1413,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030460
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lsetxattr rule in audit.rules when on x86_64
   lineinfile:
@@ -1421,7 +1421,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lsetxattr
   - unknown_severity
@@ -1491,14 +1491,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030420
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchmod rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchmod
   - unknown_severity
@@ -1544,7 +1544,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030420
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchmod rule in audit.rules when on x86_64
   lineinfile:
@@ -1552,7 +1552,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchmod
   - unknown_severity
@@ -1622,14 +1622,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030380
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchown rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchown
   - unknown_severity
@@ -1675,7 +1675,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030380
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchown rule in audit.rules when on x86_64
   lineinfile:
@@ -1683,7 +1683,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchown
   - unknown_severity
@@ -1753,14 +1753,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030480
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fremovexattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fremovexattr
   - medium_severity
@@ -1806,7 +1806,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030480
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fremovexattr rule in audit.rules when on x86_64
   lineinfile:
@@ -1814,7 +1814,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fremovexattr
   - medium_severity
@@ -1884,14 +1884,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030450
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fsetxattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fsetxattr
   - unknown_severity
@@ -1937,7 +1937,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030450
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fsetxattr rule in audit.rules when on x86_64
   lineinfile:
@@ -1945,7 +1945,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fsetxattr
   - unknown_severity
@@ -2015,14 +2015,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030470
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the removexattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_removexattr
   - medium_severity
@@ -2068,7 +2068,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030470
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the removexattr rule in audit.rules when on x86_64
   lineinfile:
@@ -2076,7 +2076,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_removexattr
   - medium_severity
@@ -2146,14 +2146,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030440
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the setxattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_setxattr
   - unknown_severity
@@ -2199,7 +2199,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030440
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the setxattr rule in audit.rules when on x86_64
   lineinfile:
@@ -2207,7 +2207,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_setxattr
   - unknown_severity
@@ -2277,14 +2277,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030390
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lchown rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lchown
   - unknown_severity
@@ -2330,7 +2330,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030390
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lchown rule in audit.rules when on x86_64
   lineinfile:
@@ -2338,7 +2338,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lchown
   - unknown_severity
@@ -2408,14 +2408,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030370
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chown rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_chown
   - unknown_severity
@@ -2461,7 +2461,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030370
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chown rule in audit.rules when on x86_64
   lineinfile:
@@ -2469,7 +2469,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_chown
   - unknown_severity
@@ -2539,14 +2539,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030410
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chmod rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_chmod
   - unknown_severity
@@ -2592,7 +2592,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030410
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chmod rule in audit.rules when on x86_64
   lineinfile:
@@ -2600,7 +2600,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_chmod
   - unknown_severity
@@ -2670,14 +2670,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030490
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lremovexattr rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lremovexattr
   - medium_severity
@@ -2723,7 +2723,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030490
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the lremovexattr rule in audit.rules when on x86_64
   lineinfile:
@@ -2731,7 +2731,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_lremovexattr
   - medium_severity
@@ -2801,14 +2801,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030430
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchmodat rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchmodat
   - unknown_severity
@@ -2854,7 +2854,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030430
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchmodat rule in audit.rules when on x86_64
   lineinfile:
@@ -2862,7 +2862,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchmodat
   - unknown_severity
@@ -2932,14 +2932,14 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030400
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchownat rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchownat
   - unknown_severity
@@ -2985,7 +2985,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030400
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the fchownat rule in audit.rules when on x86_64
   lineinfile:
@@ -2993,7 +2993,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_dac_modification_fchownat
   - unknown_severity
@@ -3063,14 +3063,14 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030910
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the unlink rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=unset -F key=delete
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_unlink
   - medium_severity
@@ -3116,7 +3116,7 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030910
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the unlink rule in audit.rules when on x86_64
   lineinfile:
@@ -3124,7 +3124,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_unlink
   - medium_severity
@@ -3194,14 +3194,14 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030920
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the unlinkat rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_unlinkat
   - medium_severity
@@ -3247,7 +3247,7 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030920
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the unlinkat rule in audit.rules when on x86_64
   lineinfile:
@@ -3255,7 +3255,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_unlinkat
   - medium_severity
@@ -3325,14 +3325,14 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030880
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the rename rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=unset -F key=delete
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_rename
   - medium_severity
@@ -3378,7 +3378,7 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030880
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the rename rule in audit.rules when on x86_64
   lineinfile:
@@ -3386,7 +3386,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_rename
   - medium_severity
@@ -3456,14 +3456,14 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030890
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the renameat rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=unset -F key=delete
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_renameat
   - medium_severity
@@ -3509,7 +3509,7 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030890
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the renameat rule in audit.rules when on x86_64
   lineinfile:
@@ -3517,7 +3517,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_renameat
   - medium_severity
@@ -3587,14 +3587,14 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030900
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the rmdir rule in rules.d when on x86_64
   lineinfile:
     path: '{{ all_files[0] }}'
     line: -a always,exit -F arch=b64 -S rmdir -F auid>=1000 -F auid!=unset -F key=delete
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_rmdir
   - medium_severity
@@ -3640,7 +3640,7 @@
   - PCI-DSS-Req-10.2.7
   - DISA-STIG-RHEL-07-030900
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the rmdir rule in audit.rules when on x86_64
   lineinfile:
@@ -3648,7 +3648,7 @@
     state: present
     dest: /etc/audit/audit.rules
     create: true
-  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: audit_arch == 'b64' and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_file_deletion_events_rmdir
   - medium_severity
@@ -3706,7 +3706,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030750
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the umount rule in audit.rules
   lineinfile:
@@ -3725,7 +3725,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030750
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -3764,7 +3764,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030650
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the gpasswd rule in audit.rules
   lineinfile:
@@ -3783,7 +3783,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030650
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -3822,7 +3822,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030760
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the postdrop rule in audit.rules
   lineinfile:
@@ -3841,7 +3841,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030760
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -3880,7 +3880,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030640
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the unix_chkpwd rule in audit.rules
   lineinfile:
@@ -3899,7 +3899,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030640
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -3938,7 +3938,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030690
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the sudo rule in audit.rules
   lineinfile:
@@ -3957,7 +3957,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030690
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -3996,7 +3996,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030810
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the pam_timestamp_check rule in audit.rules
   lineinfile:
@@ -4015,7 +4015,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030810
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4054,7 +4054,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030630
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the passwd rule in audit.rules
   lineinfile:
@@ -4073,7 +4073,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030630
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4112,7 +4112,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030710
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the newgrp rule in audit.rules
   lineinfile:
@@ -4131,7 +4131,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030710
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search for privileged commands
   shell: find / -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null | cat
@@ -4159,7 +4159,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030360
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4192,7 +4192,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030360
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Overwrites the rule in rules.d
   lineinfile:
@@ -4225,7 +4225,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030360
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Adds the rule in rules.d
   lineinfile:
@@ -4234,7 +4234,7 @@
     create: true
   with_items:
   - '{{ files_result.results }}'
-  when: item.matched == 0 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: item.matched == 0 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - audit_rules_privileged_commands
   - medium_severity
@@ -4287,7 +4287,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030360
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4326,7 +4326,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030770
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the postqueue rule in audit.rules
   lineinfile:
@@ -4345,7 +4345,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030770
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4384,7 +4384,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030680
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the su rule in audit.rules
   lineinfile:
@@ -4403,7 +4403,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030680
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4442,7 +4442,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030670
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the userhelper rule in audit.rules
   lineinfile:
@@ -4461,7 +4461,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030670
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4500,7 +4500,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030720
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chsh rule in audit.rules
   lineinfile:
@@ -4519,7 +4519,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030720
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4558,7 +4558,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030730
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the sudoedit rule in audit.rules
   lineinfile:
@@ -4577,7 +4577,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030730
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4616,7 +4616,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030780
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the ssh_keysign rule in audit.rules
   lineinfile:
@@ -4635,7 +4635,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030780
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4674,7 +4674,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030660
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the chage rule in audit.rules
   lineinfile:
@@ -4693,7 +4693,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030660
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Search /etc/audit/rules.d for audit rule entries
   find:
@@ -4732,7 +4732,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030800
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the crontab rule in audit.rules
   lineinfile:
@@ -4751,7 +4751,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-030800
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit gshadow tasks
   set_fact:
@@ -4804,7 +4804,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030872
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the gshadow rule in /etc/audit/audit.rules
   lineinfile:
@@ -4832,7 +4832,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030872
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit passwd tasks
   set_fact:
@@ -4885,7 +4885,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030870
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the passwd rule in /etc/audit/audit.rules
   lineinfile:
@@ -4913,7 +4913,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030870
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit group tasks
   set_fact:
@@ -4966,7 +4966,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030871
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the group rule in /etc/audit/audit.rules
   lineinfile:
@@ -4994,7 +4994,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030871
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit opasswd tasks
   set_fact:
@@ -5047,7 +5047,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030874
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the opasswd rule in /etc/audit/audit.rules
   lineinfile:
@@ -5075,7 +5075,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030874
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set architecture for audit shadow tasks
   set_fact:
@@ -5128,7 +5128,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030873
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Inserts/replaces the shadow rule in /etc/audit/audit.rules
   lineinfile:
@@ -5156,7 +5156,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030873
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd Max Log File Size
   lineinfile:
@@ -5177,7 +5177,7 @@
   - PCI-DSS-Req-10.7
   - CJIS-5.4.1.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd mail_acct Action on Low Disk Space
   lineinfile:
@@ -5201,7 +5201,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030350
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd Number of Logs Retained
   lineinfile:
@@ -5223,7 +5223,7 @@
   - PCI-DSS-Req-10.7
   - CJIS-5.4.1.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd max_log_file_action Upon Reaching Maximum Log Size
   lineinfile:
@@ -5245,7 +5245,7 @@
   - PCI-DSS-Req-10.7
   - CJIS-5.4.1.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd space_left Action on Low Disk Space
   lineinfile:
@@ -5269,7 +5269,7 @@
   - PCI-DSS-Req-10.7
   - CJIS-5.4.1.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd admin_space_left Action on Low Disk Space
   lineinfile:
@@ -5293,7 +5293,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030340
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure auditd Flush Priority
   lineinfile:
@@ -5312,7 +5312,7 @@
   - NIST-800-53-AU-12(1)
   - NIST-800-171-3.3.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable service auditd
   service:
@@ -5341,7 +5341,7 @@
   - CJIS-5.4.1.1
   - DISA-STIG-RHEL-07-030000
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure the Default UMASK is Set Correctly
   lineinfile:
@@ -5737,7 +5737,7 @@
   - NIST-800-171-3.1.10
   - DISA-STIG-RHEL-07-010090
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Get NSS database smart card configuration
   shell: /usr/bin/pkcs11-switch
@@ -5839,7 +5839,7 @@
   - NIST-800-171-3.1.2
   - NIST-800-171-3.4.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Verify that Interactive Boot is Disabled (runtime)
   shell: /sbin/grubby --update-kernel=ALL --remove-args="systemd.confirm_spawn"
@@ -5855,7 +5855,7 @@
   - NIST-800-171-3.1.2
   - NIST-800-171-3.4.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Ctrl-Alt-Del Burst Action
   lineinfile:
@@ -5888,7 +5888,7 @@
   - NIST-800-171-3.4.5
   - DISA-STIG-RHEL-07-020230
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable service debug-shell
   service:
@@ -5906,7 +5906,7 @@
   - CCE-80206-6
   - NIST-800-171-3.4.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable socket of service debug-shell if applicable
   service:
@@ -5924,7 +5924,7 @@
   - CCE-80206-6
   - NIST-800-171-3.4.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Do not allow users to reuse recent passwords - system-auth (change)
   replace:
@@ -6351,7 +6351,7 @@
   - PCI-DSS-Req-8.1.8
   - CJIS-5.5.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME picture-uri
   lineinfile:
@@ -6371,7 +6371,7 @@
   - PCI-DSS-Req-8.1.8
   - CJIS-5.5.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set GNOME3 Screensaver Inactivity Timeout
   ini_file:
@@ -6393,7 +6393,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010070
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME idle-delay
   lineinfile:
@@ -6414,7 +6414,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010070
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME lock-delay
   lineinfile:
@@ -6433,7 +6433,7 @@
   - NIST-800-171-3.1.10
   - DISA-STIG-RHEL-07-010081
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable GNOME3 Screensaver Lock After Idle Period
   ini_file:
@@ -6455,7 +6455,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010060
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME lock-enabled
   lineinfile:
@@ -6476,7 +6476,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010060
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable GNOME3 Screensaver Idle Activation
   ini_file:
@@ -6498,7 +6498,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010100
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME idle_activation_enabled
   lineinfile:
@@ -6519,7 +6519,7 @@
   - CJIS-5.5.5
   - DISA-STIG-RHEL-07-010100
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Full Username on Splash Screen
   ini_file:
@@ -6536,7 +6536,7 @@
   - medium_disruption
   - CCE-80114-2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME show-full-name-in-top-bar
   lineinfile:
@@ -6552,7 +6552,7 @@
   - medium_disruption
   - CCE-80114-2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set GNOME3 Screensaver Lock Delay After Activation Period
   ini_file:
@@ -6573,7 +6573,7 @@
   - PCI-DSS-Req-8.1.8
   - DISA-STIG-RHEL-07-010110
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME lock-delay
   lineinfile:
@@ -6593,7 +6593,7 @@
   - PCI-DSS-Req-8.1.8
   - DISA-STIG-RHEL-07-010110
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME Session idle-delay
   lineinfile:
@@ -6612,7 +6612,7 @@
   - NIST-800-171-3.1.10
   - DISA-STIG-RHEL-07-010082
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GNOME3 Automounting - automount
   ini_file:
@@ -6633,7 +6633,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Automounting - automount
   lineinfile:
@@ -6653,7 +6653,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GNOME3 Automounting - automount-open
   ini_file:
@@ -6674,7 +6674,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Automounting - automount-open
   lineinfile:
@@ -6694,7 +6694,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GNOME3 Automounting - autorun-never
   ini_file:
@@ -6715,7 +6715,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Automounting - autorun-never
   lineinfile:
@@ -6735,7 +6735,7 @@
   - NIST-800-53-AC-19(e)
   - NIST-800-171-3.1.7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable All GNOME3 Thumbnailers
   ini_file:
@@ -6753,7 +6753,7 @@
   - CCE-80123-3
   - NIST-800-53-CM-7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Thumbnailers
   lineinfile:
@@ -6770,7 +6770,7 @@
   - CCE-80123-3
   - NIST-800-53-CM-7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Require Encryption for Remote Access in GNOME3
   ini_file:
@@ -6789,7 +6789,7 @@
   - NIST-800-53-CM-2(1)(b)
   - NIST-800-171-3.1.13
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Encryption for Remote Access
   lineinfile:
@@ -6807,7 +6807,7 @@
   - NIST-800-53-CM-2(1)(b)
   - NIST-800-171-3.1.13
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Require Credential Prompting for Remote Access in GNOME3
   ini_file:
@@ -6825,7 +6825,7 @@
   - CCE-80120-9
   - NIST-800-171-3.1.12
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Credential Prompting for Remote Access
   lineinfile:
@@ -6842,7 +6842,7 @@
   - CCE-80120-9
   - NIST-800-171-3.1.12
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable the GNOME3 Login Number of Failures
   ini_file:
@@ -6860,7 +6860,7 @@
   - CCE-80109-2
   - NIST-800-171-3.1.8
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Login Number of Failures
   lineinfile:
@@ -6877,7 +6877,7 @@
   - CCE-80109-2
   - NIST-800-171-3.1.8
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GDM Guest Login
   ini_file:
@@ -6898,7 +6898,7 @@
   - NIST-800-171-3.1.1
   - DISA-STIG-RHEL-07-010450
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable the GNOME3 Login Smartcard Authentication
   ini_file:
@@ -6917,7 +6917,7 @@
   - PCI-DSS-Req-8.3
   - DISA-STIG-RHEL-07-010061
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 disablement of Smartcard Authentication
   lineinfile:
@@ -6935,7 +6935,7 @@
   - PCI-DSS-Req-8.3
   - DISA-STIG-RHEL-07-010061
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable the GNOME3 Login Restart and Shutdown Buttons
   ini_file:
@@ -6954,7 +6954,7 @@
   - NIST-800-53-AC-6
   - NIST-800-171-3.1.2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME disablement of Login Restart and Shutdown Buttons
   lineinfile:
@@ -6972,7 +6972,7 @@
   - NIST-800-53-AC-6
   - NIST-800-171-3.1.2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable the GNOME3 Login User List
   ini_file:
@@ -6990,7 +6990,7 @@
   - CCE-80106-8
   - NIST-800-53-AC-23
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 disablement of Login User List
   lineinfile:
@@ -7007,7 +7007,7 @@
   - CCE-80106-8
   - NIST-800-53-AC-23
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GDM Automatic Login
   ini_file:
@@ -7028,7 +7028,7 @@
   - NIST-800-171-3.1.1
   - DISA-STIG-RHEL-07-010440
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable WiFi Network Notification in GNOME3
   ini_file:
@@ -7046,7 +7046,7 @@
   - CCE-80119-1
   - NIST-800-171-3.1.16
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 disablement of WiFi
   lineinfile:
@@ -7063,7 +7063,7 @@
   - CCE-80119-1
   - NIST-800-171-3.1.16
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable WiFi Network Connection Creation in GNOME3
   ini_file:
@@ -7081,7 +7081,7 @@
   - CCE-80118-3
   - NIST-800-171-3.1.16
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 disablement of WiFi
   lineinfile:
@@ -7098,7 +7098,7 @@
   - CCE-80118-3
   - NIST-800-171-3.1.16
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Geolocation in GNOME3 - location tracking
   ini_file:
@@ -7115,7 +7115,7 @@
   - medium_disruption
   - CCE-80117-5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Geolocation in GNOME3 - clock location tracking
   ini_file:
@@ -7139,7 +7139,7 @@
   - medium_disruption
   - CCE-80117-5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME geolocation - clock location tracking
   lineinfile:
@@ -7155,7 +7155,7 @@
   - medium_disruption
   - CCE-80117-5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable User Administration in GNOME3
   ini_file:
@@ -7173,7 +7173,7 @@
   - CCE-80115-9
   - NIST-800-171-3.1.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME3 Thumbnailers
   lineinfile:
@@ -7190,7 +7190,7 @@
   - CCE-80115-9
   - NIST-800-171-3.1.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Ctrl-Alt-Del Reboot Key Sequence in GNOME3
   ini_file:
@@ -7209,7 +7209,7 @@
   - NIST-800-53-AC-6
   - NIST-800-171-3.1.2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Prevent user modification of GNOME disablement of Ctrl-Alt-Del
   lineinfile:
@@ -7227,7 +7227,7 @@
   - NIST-800-53-AC-6
   - NIST-800-171-3.1.2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: 'Set fact: Package manager reinstall command (dnf)'
   set_fact:
@@ -7492,7 +7492,7 @@
   - CJIS-5.10.1.3
   - DISA-STIG-RHEL-07-020030
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure Periodic Execution of AIDE
   cron:
@@ -7520,7 +7520,7 @@
   - CJIS-5.10.1.3
   - DISA-STIG-RHEL-07-020030
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure dracut-fips is installed
   package:
@@ -7836,7 +7836,7 @@
   - NIST-800-171-3.4.6
   - CJIS-5.10.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'dccp' is disabled
   lineinfile:
@@ -7856,7 +7856,7 @@
   - CJIS-5.10.1
   - DISA-STIG-RHEL-07-020101
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable service firewalld
   service:
@@ -7875,7 +7875,7 @@
   - NIST-800-171-3.4.7
   - DISA-STIG-RHEL-07-040520
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.all.disable_ipv6 is set to 1
   sysctl:
@@ -7893,7 +7893,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.all.accept_source_route is set
   sysctl:
@@ -7912,7 +7912,7 @@
   - NIST-800-171-3.1.20
   - DISA-STIG-RHEL-07-040830
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.default.accept_ra is set
   sysctl:
@@ -7930,7 +7930,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.all.accept_ra is set
   sysctl:
@@ -7948,7 +7948,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.all.accept_redirects is set
   sysctl:
@@ -7966,7 +7966,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.default.accept_redirects is set
   sysctl:
@@ -7984,7 +7984,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.default.accept_source_route is set
   sysctl:
@@ -8002,7 +8002,7 @@
   - NIST-800-53-AC-4
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv6.conf.all.forwarding is set
   sysctl:
@@ -8020,7 +8020,7 @@
   - NIST-800-53-CM-7
   - NIST-800-53-SC-5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable service bluetooth
   service:
@@ -8085,7 +8085,7 @@
   - NIST-800-171-3.1.16
   - CJIS-5.13.1.3
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.accept_redirects is set
   sysctl:
@@ -8108,7 +8108,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040640
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.rp_filter is set
   sysctl:
@@ -8128,7 +8128,7 @@
   - NIST-800-53-SC-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.rp_filter is set
   sysctl:
@@ -8148,7 +8148,7 @@
   - NIST-800-53-SC-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.secure_redirects is set
   sysctl:
@@ -8168,7 +8168,7 @@
   - NIST-800-53-SC-5
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.log_martians is set
   sysctl:
@@ -8188,7 +8188,7 @@
   - NIST-800-53-SC-5(3)
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.accept_source_route is set
   sysctl:
@@ -8211,7 +8211,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040620
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.accept_source_route is set
   sysctl:
@@ -8232,7 +8232,7 @@
   - NIST-800-171-3.1.20
   - DISA-STIG-RHEL-07-040610
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.tcp_syncookies is set
   sysctl:
@@ -8254,7 +8254,7 @@
   - NIST-800-171-3.1.20
   - CJIS-5.10.1.1
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.log_martians is set
   sysctl:
@@ -8274,7 +8274,7 @@
   - NIST-800-53-SC-5(3)
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.icmp_ignore_bogus_error_responses is set
   sysctl:
@@ -8293,7 +8293,7 @@
   - NIST-800-53-SC-5
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.secure_redirects is set
   sysctl:
@@ -8314,7 +8314,7 @@
   - NIST-800-53-SC-7
   - NIST-800-171-3.1.20
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.icmp_echo_ignore_broadcasts is set
   sysctl:
@@ -8336,7 +8336,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040630
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.accept_redirects is set
   sysctl:
@@ -8358,7 +8358,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040641
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.default.send_redirects is set to 0
   sysctl:
@@ -8381,7 +8381,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040650
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.conf.all.send_redirects is set to 0
   sysctl:
@@ -8403,7 +8403,7 @@
   - CJIS-5.10.1.1
   - DISA-STIG-RHEL-07-040660
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl net.ipv4.ip_forward is set to 0
   sysctl:
@@ -8424,7 +8424,7 @@
   - NIST-800-171-3.1.20
   - DISA-STIG-RHEL-07-040740
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure libsemanage-python installed
   package:
@@ -9498,7 +9498,7 @@
   - NIST-800-171-3.7.2
   - DISA-STIG-RHEL-07-020220
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure SELinux State is Enforcing
   lineinfile:
@@ -9524,7 +9524,7 @@
   - NIST-800-171-3.7.2
   - DISA-STIG-RHEL-07-020210
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'hfs' is disabled
   lineinfile:
@@ -9542,7 +9542,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'usb-storage' is disabled
   lineinfile:
@@ -9564,7 +9564,7 @@
   - NIST-800-171-3.1.21
   - DISA-STIG-RHEL-07-020100
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'freevxfs' is disabled
   lineinfile:
@@ -9582,7 +9582,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'jffs2' is disabled
   lineinfile:
@@ -9600,7 +9600,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'squashfs' is disabled
   lineinfile:
@@ -9618,7 +9618,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'hfsplus' is disabled
   lineinfile:
@@ -9636,7 +9636,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure kernel module 'cramfs' is disabled
   lineinfile:
@@ -9654,7 +9654,7 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.6
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable service autofs
   service:
@@ -9713,7 +9713,7 @@
   - CCE-26900-1
   - NIST-800-53-SI-11
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl kernel.randomize_va_space is set to 2
   sysctl:
@@ -9732,7 +9732,7 @@
   - NIST-800-171-3.1.7
   - DISA-STIG-RHEL-07-040201
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure sysctl kernel.dmesg_restrict is set to 1
   sysctl:
@@ -9750,7 +9750,7 @@
   - NIST-800-53-SI-11
   - NIST-800-171-3.1.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: get back device associated to mountpoint
   shell: mount | grep ' {{ var_removable_partition }} ' |cut -d ' ' -f 1
@@ -9774,7 +9774,7 @@
   - NIST-800-53-MP-2
   - DISA-STIG-RHEL-07-021010
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - block:
   - name: get back device previous mount option
@@ -9797,7 +9797,7 @@
       state: mounted
       fstype: '{{device_fstype.stdout}}'
   when: (device_name.stdout | length > 0) and (ansible_virtualization_role != "guest" or ansible_virtualization_type !=
-    "VMware")
+    "docker")
   tags:
   - mount_option_nosuid_removable_partitions
   - unknown_severity
@@ -9833,7 +9833,7 @@
   - NIST-800-53-CM-7
   - NIST-800-53-MP-2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - block:
   - name: get back device previous mount option
@@ -9856,7 +9856,7 @@
       state: mounted
       fstype: '{{device_fstype.stdout}}'
   when: (device_name.stdout | length > 0) and (ansible_virtualization_role != "guest" or ansible_virtualization_type !=
-    "VMware")
+    "docker")
   tags:
   - mount_option_noexec_removable_partitions
   - unknown_severity
@@ -9890,7 +9890,7 @@
   - NIST-800-53-CM-7
   - NIST-800-53-MP-2
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - block:
   - name: get back device previous mount option
@@ -9913,7 +9913,7 @@
       state: mounted
       fstype: '{{device_fstype.stdout}}'
   when: (device_name.stdout | length > 0) and (ansible_virtualization_role != "guest" or ansible_virtualization_type !=
-    "VMware")
+    "docker")
   tags:
   - mount_option_nodev_removable_partitions
   - unknown_severity
@@ -9936,7 +9936,7 @@
   file:
     path: /boot/grub2/grub.cfg
     group: 0
-  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - file_groupowner_grub2_cfg
   - medium_severity
@@ -9963,7 +9963,7 @@
   - NIST-800-53-AC-6(7)
   - NIST-800-171-3.4.5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Test for existence /boot/grub2/grub.cfg
   stat:
@@ -9974,7 +9974,7 @@
   file:
     path: /boot/grub2/grub.cfg
     owner: 0
-  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - file_owner_grub2_cfg
   - medium_severity
@@ -10447,7 +10447,7 @@
   - NIST-800-53-IA-5(10)
   - NIST-800-53-IA-5(13)
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure SSSD to Expire SSH Known Hosts
   ini_file:
@@ -10465,7 +10465,7 @@
   - CCE-80366-8
   - NIST-800-53-IA-5(13)
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable Smartcards in SSSD
   ini_file:
@@ -10482,7 +10482,7 @@
   - medium_disruption
   - CCE-80570-5
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Configure SSD to Expire Offline Credentials
   ini_file:
@@ -10500,7 +10500,7 @@
   - CCE-80365-0
   - NIST-800-53-IA-5(13)
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable SSH Support for User Known Hosts
   lineinfile:
@@ -10520,7 +10520,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040380
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable SSH Warning Banner
   lineinfile:
@@ -10545,7 +10545,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040170
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Ensure firewalld is installed
   package:
@@ -10562,14 +10562,14 @@
   - CCE-80361-9
   - NIST-800-171-3.1.12
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable SSHD in firewalld (custom port)
   firewalld:
     port: '{{ sshd_listening_port }}/tcp'
     permanent: true
     state: enabled
-  when: sshd_listening_port != 22 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: sshd_listening_port != 22 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - firewalld_sshd_port_enabled
   - unknown_severity
@@ -10584,7 +10584,7 @@
     service: ssh
     permanent: true
     state: enabled
-  when: sshd_listening_port == 22 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: sshd_listening_port == 22 and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - firewalld_sshd_port_enabled
   - unknown_severity
@@ -10612,7 +10612,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040460
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Do Not Allow SSH Environment Options
   lineinfile:
@@ -10633,7 +10633,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-010460
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable Encrypted X11 Forwarding
   lineinfile:
@@ -10653,7 +10653,7 @@
   - NIST-800-171-3.1.13
   - DISA-STIG-RHEL-07-040710
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Use Only Approved Ciphers
   lineinfile:
@@ -10681,7 +10681,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040110
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Kerberos Authentication
   lineinfile:
@@ -10701,7 +10701,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040440
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable SSH Root Login
   lineinfile:
@@ -10727,7 +10727,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040370
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable GSSAPI Authentication
   lineinfile:
@@ -10747,7 +10747,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040430
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Compression or Set Compression to delayed
   lineinfile:
@@ -10767,7 +10767,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040470
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable SSH Support for .rhosts Files
   lineinfile:
@@ -10789,7 +10789,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040350
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable SSH Access via Empty Passwords
   lineinfile:
@@ -10813,7 +10813,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-010300
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Use Only Approved MACs
   lineinfile:
@@ -10837,7 +10837,7 @@
   - NIST-800-171-3.13.8
   - DISA-STIG-RHEL-07-040400
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set SSH Idle Timeout Interval
   lineinfile:
@@ -10861,7 +10861,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040320
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Allow Only SSH Protocol 2
   lineinfile:
@@ -10883,7 +10883,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040390
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Set SSH Client Alive Count
   lineinfile:
@@ -10906,7 +10906,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-040340
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable SSH Support for Rhosts RSA Authentication
   lineinfile:
@@ -10926,7 +10926,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040330
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Disable Host-Based Authentication
   lineinfile:
@@ -10947,7 +10947,7 @@
   - CJIS-5.5.6
   - DISA-STIG-RHEL-07-010470
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable Use of Strict Mode Checking
   lineinfile:
@@ -10967,7 +10967,7 @@
   - NIST-800-171-3.1.12
   - DISA-STIG-RHEL-07-040450
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Find /etc/ssh file(s)
   find:
@@ -11004,7 +11004,7 @@
   - NIST-800-171-3.13.10
   - DISA-STIG-RHEL-07-040410
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Enable service sshd
   service:
@@ -11024,7 +11024,7 @@
   - NIST-800-171-3.13.8
   - DISA-STIG-RHEL-07-040310
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Find /etc/ssh file(s)
   find:
@@ -11061,7 +11061,7 @@
   - NIST-800-171-3.13.10
   - DISA-STIG-RHEL-07-040420
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Test for existence /etc/cron.allow
   stat:
@@ -11072,7 +11072,7 @@
   file:
     path: /etc/cron.allow
     group: 0
-  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - file_groupowner_cron_allow
   - medium_severity
@@ -11092,7 +11092,7 @@
   file:
     path: /etc/cron.allow
     owner: 0
-  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  when: file_exists.stat.exists and (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
   tags:
   - file_owner_cron_allow
   - medium_severity
@@ -11117,7 +11117,7 @@
   - CCE-27323-5
   - NIST-800-53-CM-7
   when:
-  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "VMware")
+  - (ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker")
 
 - name: Get nfs and nfs4 mount points, that don't have nosuid
   shell: grep -E "[[:space:]]nfs[4]?[[:space:]]" /etc/fstab | grep -v "nosuid" | awk '{print $2}'

@@ -24,3 +24,4 @@ TAGS informations
 
 How to find ansible_virtualization_role and ansible_virtualization_type
 $ ansible -i hosts -m setup mail | grep -i virt
+

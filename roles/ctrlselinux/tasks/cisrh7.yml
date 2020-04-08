@@ -9,7 +9,7 @@
   package:
     name: mcstrans
     state: absent
-#  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - CCE-80445-0
 
@@ -17,7 +17,7 @@
   package:
     name: setroubleshoot
     state: absent
-#  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - CCE-80444-3
 
@@ -25,7 +25,7 @@
   replace:
     dest: /etc/default/grub
     regexp: selinux=0
-#  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - CCE-26961-3
 
@@ -41,7 +41,7 @@
     regexp: ^SELINUXTYPE=
     line: SELINUXTYPE={{ var_selinux_policy_name }}
     create: true
-#  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - CCE-27279-9
 
@@ -60,6 +60,6 @@
     regexp: ^SELINUX=
     line: SELINUX={{ var_selinux_state }}
     create: true
-#  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - CCE-27334-2
