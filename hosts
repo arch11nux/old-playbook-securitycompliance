@@ -1,0 +1,9 @@
+## set up ssh user name and path to python3 ##
+[all:vars]
+ansible_user='ransible'
+ansible_become=yes
+ansible_become_method=sudo
+ansible_python_interpreter='/usr/bin/env python'
+ 
+[esxcentos]
+vircentos7-sysadmin ansible_ssh_host=172.16.33.195
