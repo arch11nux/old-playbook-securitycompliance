@@ -18,7 +18,9 @@ N/A
 
 TAGS informations
   cis = des contrôles SELinux qui sont dans le CIS
-  noncis = des contrôles SELinux qui ne sont pas dans le CIS
+  noncis = des contrôles qui ne sont pas dans le CIS
+  nist-800 = des contrôles nist-800
   rh7 = relier au RedHat version 7
 
-
+How to find ansible_virtualization_role and ansible_virtualization_type
+$ ansible -i hosts -m setup mail | grep -i virt
