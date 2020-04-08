@@ -1,0 +1,8 @@
+---
+# tasks file for roles/selinux
+
+- name: SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS Linux RH7
+  import_tasks: cisrh7.yml
+  tags:
+    - cis
+    - RedHat7
