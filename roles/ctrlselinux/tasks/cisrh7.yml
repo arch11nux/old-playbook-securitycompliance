@@ -14,9 +14,13 @@
     - no_reboot_needed
     - CCE-27334-2
   register: resultat
+# display TASK result
 - debug:
     msg: "RESULTAT: {{ resultat.state }}"
-- local_action: copy content={{ resultat.state }} dest=/tmp/output.txt
+# copy result to local file 
+- local_action: copy content="{{ resultat.state }}" dest="~/output.txt"
+# copy result on every destination host into /tmp/output.txt
+- copy: content="{{ resultat.state }}" dest="/tmp/output.txt"   # delegate_to: localhost
 #-------------------------------------------
 - name: "Ensure mcstrans is removed"
   package:
