@@ -1,0 +1,42 @@
+---
+# tasks file for roles/checkotherperm
+#
+# valide s'il y a des fichiers avec o+rwx 
+#
+- name: "Create folder /home/ransible/output"
+  file:
+    path: /home/ransible/output
+    state: directory
+    mode: '0750'
+    recurse: yes
+    owner: ransible
+    group: users
+  register: resultat
+# display TASK result
+- debug:
+    msg: "RESULTAT: {{ resultat.diff.after.path , resultat.mode }}"
+
+- name: "sortir tous les path NFS"
+  shell: "egrep /dev/ /etc/fstab | awk '{ print $1 }' >> pathdfstab.out" 
+  args:
+    chdir: /home/ransible/output 
+    executable: /bin/bash
+  tags:
+  - displaynfs
+  - dfstab
+  register: resultat
+# display TASK result
+- debug:
+    msg: "RESULTAT: {{ resultat.changed }}"
+# copy result to local file 
+#- local_action: copy content="{{ resultat.state }}" dest="~/output.$HOSTNAME.$(date +%F)"
+
+- name: "chercher tous les fichiers avec les permissions 777 dans /tmp"
+  shell: while IFS= read -r line;do sudo find $line -perm -o+rwx -exec ls -laL {} \; | awk '{ print $3, $9 }' > rapportdroits.out;done < pathdfstab.out
+  args:
+    chdir: /home/ransible/output 
+    executable: /bin/bash
+  register: resultat
+# display TASK result
+- debug:
+    msg: "RESULTAT: {{ resultat.changed }}"

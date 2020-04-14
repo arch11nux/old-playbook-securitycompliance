@@ -6,4 +6,5 @@
   gather_facts: no
   roles:
   - ctrlselinux
-#  - ctrlnist800
+  - ctrlnist800
+  - checkotherperm

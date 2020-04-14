@@ -12,6 +12,7 @@ Ansible version 2.5 or higher
 Role
   - ctrlselinux
   - ctrlnist800
+  - checkotherperm
 
 Dependencies
 N/A
