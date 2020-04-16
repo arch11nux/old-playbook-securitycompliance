@@ -1,38 +1,39 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+A script to collect security information from a Linux host.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+script roles/colsecinfo/files/colsecinfo.sh
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+N/A
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+N/A
 
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+SCRIPT roles/colsecinfo/files/colsecinfo.sh
+---------------------
+  header
+    #insert title in order to display The Begin
+  
+  system_info
+    #target hostname info
+    #search all *-release files for version info
+  
+  user_info
+    #all root accounts (uid 0)
+    #pull out vital sudoers info
+    #is root permitted to login via ssh
+  
+  environmental_info
+    #check if selinux is enabled
+  
+  footer
+    #insert title in order to display The END

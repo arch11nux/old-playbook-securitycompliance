@@ -1,10 +1,10 @@
 ---
 # tasks file for roles/colsecinfo
 
-# copier script files/colsecinfo.sh dans /tmp
+# copier script roles/colsecinfo/files/colsecinfo.sh dans /tmp
 - name: copy script
   copy:
-    src: ./files/colsecinfo.sh
+    src: ./roles/colsecinfo/files/colsecinfo.sh
     dest: /tmp/colsecinfo.sh
     owner: "ransible"
     group: "users"
