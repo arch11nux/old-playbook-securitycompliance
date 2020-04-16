@@ -1,0 +1,23 @@
+---
+# tasks file for roles/colsecinfo
+
+# copier script files/colsecinfo.sh dans /tmp
+- name: copy script
+  copy:
+    src: ./files/colsecinfo.sh
+    dest: /tmp/colsecinfo.sh
+    owner: "ransible"
+    group: "users"
+    mode: 0750
+  tags:
+    - copy.script
+    - copy.colsecinfo.sh
+
+# lancer script /tmp/colsecinfo.sh et 
+- name: "executer script /tmp/colsecinfo.sh"
+  shell: "/tmp/colsecinfo.sh"
+  args:
+    chdir: /tmp 
+    executable: /bin/bash
+  tags: 
+    - execute.colsecinfo.sh

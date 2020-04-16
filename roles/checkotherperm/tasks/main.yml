@@ -17,7 +17,7 @@
     msg: "RESULTAT: {{ resultat.diff.after.path , resultat.mode }}"
 
 - name: "sortir tous les path NFS"
-  shell: "egrep /dev/ /etc/fstab | awk '{ print $1 }' >> pathdfstab.out" 
+  shell: "grep dev /etc/fstab | grep "^/dev/" | grep -v "^#" | awk '{ print $1 }'" 
   args:
     chdir: /home/ransible/output 
     executable: /bin/bash
