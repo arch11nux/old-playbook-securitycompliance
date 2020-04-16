@@ -34,6 +34,14 @@ SCRIPT roles/colsecinfo/files/colsecinfo.sh
   
   environmental_info
     #check if selinux is enabled
+    #current umask value with both octal and symbolic output
+    #umask value as in /etc/login.defs
   
+  interesting_files
+    #search for suid files (perm 4000)
+    #list of 'interesting' suid files - feel free to make additions
+    #lists world-writable suid files
+    #lists world-writable suid files owned by root
+    
   footer
     #insert title in order to display The END
