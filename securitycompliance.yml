@@ -5,7 +5,7 @@
   port: 22
   gather_facts: no
   roles:
-#  - ctrlselinux
-#  - ctrlnist800
-#  - checkotherperm
-  - checkperm
+  - ctrlselinux
+  - ctrlnist800
+  - checkotherperm
+  - colsecinfo
