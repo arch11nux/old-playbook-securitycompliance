@@ -39,7 +39,7 @@ SCRIPT roles/colsecinfo/files/colsecinfo.sh
   
   interesting_files
     #search for suid files (perm 4000)
-    #list of 'interesting' suid files - feel free to make additions
+    #list of 'interesting' suid files
     #lists world-writable suid files
     #lists world-writable suid files owned by root
     

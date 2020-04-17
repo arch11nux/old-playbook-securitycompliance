@@ -1,9 +1,10 @@
 #!/bin/bash
 #A script to collect security information from a Linux host
 version="version 1"
-#Puntacana
 
 report=/tmp/colsecinfo.report"-"`date +"%d-%m-%y"`
+export=/tmp
+format=$export/colsecinfo-export-`date +"%d-%m-%y"`
 
 header()
 {
@@ -12,6 +13,9 @@ echo -e "Collect security information from a Linux host"
 echo -e "\e[00;33m#########################################################\e[00m" 
 echo -e # $version\n" 
 }
+
+# useful binaries (thanks to https://gtfobins.github.io/)
+binarylist='aria2c\|arp\|ash\|awk\|base64\|bash\|busybox\|cat\|chmod\|chown\|cp\|csh\|curl\|cut\|dash\|date\|dd\|diff\|dmsetup\|docker\|ed\|emacs\|env\|expand\|expect\|file\|find\|flock\|fmt\|fold\|ftp\|gawk\|gdb\|gimp\|git\|grep\|head\|ht\|iftop\|ionice\|ip$\|irb\|jjs\|jq\|jrunscript\|ksh\|ld.so\|ldconfig\|less\|logsave\|lua\|make\|man\|mawk\|more\|mv\|mysql\|nano\|nawk\|nc\|netcat\|nice\|nl\|nmap\|node\|od\|openssl\|perl\|pg\|php\|pic\|pico\|python\|readelf\|rlwrap\|rpm\|rpmquery\|rsync\|ruby\|run-parts\|rvim\|scp\|script\|sed\|setarch\|sftp\|sh\|shuf\|socat\|sort\|sqlite3\|ssh$\|start-stop-daemon\|stdbuf\|strace\|systemctl\|tail\|tar\|taskset\|tclsh\|tee\|telnet\|tftp\|time\|timeout\|ul\|unexpand\|uniq\|unshare\|vi\|vim\|watch\|wget\|wish\|xargs\|xxd\|zip\|zsh'
 
 system_info()
 {
@@ -109,7 +113,7 @@ if [ "$export" ] && [ "$findsuid" ]; then
   for i in $findsuid; do cp $i $format/suid-files/; done 2>/dev/null
 fi
 
-#list of 'interesting' suid files - feel free to make additions
+#list of 'interesting' suid files
 intsuid=`find $allsuid -perm -4000 -type f -exec ls -la {} \; 2>/dev/null | grep -w $binarylist 2>/dev/null`
 if [ "$intsuid" ]; then
   echo -e "\e[00;33m[+] Possibly interesting SUID files:\e[00m\n$intsuid" 
