@@ -3,9 +3,9 @@
 - name: "Playing with Ansible"
   hosts: esxcentos
   port: 22
-  gather_facts: no
+  gather_facts: true
   roles:
-#  - ctrlselinux
-#  - ctrlnist800
-#  - checkotherperm
+  - ctrlselinux
+  - ctrlnist800
+  - checkotherperm
   - colsecinfo

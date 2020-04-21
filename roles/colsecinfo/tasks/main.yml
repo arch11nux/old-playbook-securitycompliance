@@ -1,8 +1,17 @@
 ---
 # tasks file for roles/colsecinfo
 
-# copier script roles/colsecinfo/files/colsecinfo.sh dans /tmp
-- name: copy script
+- name: "1.1. Prérequis, Copier le script du checker"
+  become: True
+  synchronize:
+    src: "./roles/colsecinfo/files/colsecinfo.sh"
+    dest: "/tmp/"
+  changed_when: False
+
+- name: "copier script roles/colsecinfo/files/colsecinfo.sh dans /tmp"
+  become: True
+  changed_when: True
+  when: ansible_distribution == 'CentOs' and ansible_distribution_major_version == '7'
   copy:
     src: ./roles/colsecinfo/files/colsecinfo.sh
     dest: /tmp/colsecinfo.sh
@@ -13,8 +22,10 @@
     - copy.script
     - copy.colsecinfo.sh
 
-# lancer script /tmp/colsecinfo.sh et 
-- name: "executer script /tmp/colsecinfo.sh"
+- name: "lancer script /tmp/colsecinfo.sh"
+  become: True
+  changed_when: True
+  when: ansible_distribution == 'CentOs' and ansible_distribution_major_version == '7'
   shell: "/tmp/colsecinfo.sh"
   args:
     chdir: /tmp 

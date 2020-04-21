@@ -13,6 +13,7 @@ Role
   - ctrlselinux
   - ctrlnist800
   - checkotherperm
+  - colsecinfo
 
 Dependencies
 N/A
