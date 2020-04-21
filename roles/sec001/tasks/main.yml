@@ -1,0 +1,40 @@
+---
+# tasks file for roles/sec001
+- debug:
+    msg:
+    - "test pour attraper les valeurs de constantes/inxex.yml dans mon role/sec001"
+    - "{{ index }}"
+  when: >
+    index is defined
+
+- debug:
+    msg: 
+    - "+++++++++++++++++++++++++++++++++++++++++++++++"  
+    - ">>>>> CIS_CentOS_Linux_7_Benchmark_v2.2.0 <<<<<"
+    - "+++++++++++++++++++++++++++++++++++++++++++++++"
+    - " "
+    - " "
+
+- name: Enable SELinux
+  selinux:
+    policy: targeted
+    state: enforcing
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - selinux_state
+    - high_severity
+    - restrict_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-27334-2
+  register: resultat
+- debug:
+    msg: 
+    - "Enable SELinux - CCE-27334-2"
+    - "state = {{ resultat.state }}"
+    - "policy = {{ resultat.policy }}"
+    - "reboot_required = {{ resultat.reboot_required }}"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+

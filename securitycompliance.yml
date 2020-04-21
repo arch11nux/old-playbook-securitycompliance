@@ -4,8 +4,26 @@
   hosts: esxcentos
   port: 22
   gather_facts: true
-  roles:
-  - ctrlselinux
-  - ctrlnist800
-  - checkotherperm
-  - colsecinfo
+  vars_files:
+    - constants/index.yml
+  tasks:
+  - name: CIS_CentOS_Linux_7_Benchmark_v2.2.0
+    include_role:
+      name: sec001
+    when: index is defined
+  - name: CIS_Distribution_Independent_Linux_Benchmark_v2.0.0
+    include_role:
+      name: sec002
+    when: index is defined
+  - name: CIS_SUSE_Linux_Enterprise_12_Benchmark_v2.1.0
+    include_role:
+      name: sec003
+    when: index is defined
+
+
+# Ancienne configuration
+#  roles:
+#  - ctrlselinux
+#  - ctrlnist800
+#  - checkotherperm
+#  - colsecinfo
