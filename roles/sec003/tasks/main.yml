@@ -1,2 +1,30 @@
 ---
 # tasks file for roles/sec003
+- debug:
+    msg: 
+    - "+++++++++++++++++++++++++++++++++++++++++++++++"  
+    - ">>>>> {{ sec003 }} <<<<<"
+    - "+++++++++++++++++++++++++++++++++++++++++++++++"
+
+- name: "Enable SELinux -- {{ sec003 }}"
+  selinux:
+    policy: targeted
+    state: enforcing
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - selinux_state
+    - high_severity
+    - restrict_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-27334-2
+  register: resultat
+- debug:
+    msg: 
+    - "Enable SELinux - CCE-27334-2"
+    - "state = {{ resultat.state }}"
+    - "policy = {{ resultat.policy }}"
+    - "reboot_required = {{ resultat.reboot_required }}"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")

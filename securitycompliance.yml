@@ -4,21 +4,23 @@
   hosts: esxcentos
   port: 22
   gather_facts: true
-  vars_files:
-    - constants/index.yml
+  vars:
+    sec001: "{{ lookup('csvfile', 'sec001 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
+    sec002: "{{ lookup('csvfile', 'sec002 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
+    sec003: "{{ lookup('csvfile', 'sec003 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
   tasks:
-  - name: CIS_CentOS_Linux_7_Benchmark_v2.2.0
+  - name: "{{ sec001 }}"
     include_role:
       name: sec001
-    when: index is defined
-  - name: CIS_Distribution_Independent_Linux_Benchmark_v2.0.0
+
+  - name: "{{ sec002 }}"
     include_role:
       name: sec002
-    when: index is defined
-  - name: CIS_SUSE_Linux_Enterprise_12_Benchmark_v2.1.0
+
+  - name: "{{ sec003 }}"
     include_role:
       name: sec003
-    when: index is defined
+
 
 
 # Ancienne configuration

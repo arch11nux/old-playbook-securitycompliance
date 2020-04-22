@@ -1,9 +1,0 @@
----
-# Define index
-index:
-  - secnumber: sec001
-    seccomment: "CIS_CentOS_Linux_7_Benchmark_v2.2.0"
-  - secnumber: sec002
-    seccomment: "CIS_Distribution_Independent_Linux_Benchmark_v2.0.0"
-  - secnumber: sec003
-    seccomment: "CIS_SUSE_Linux_Enterprise_12_Benchmark_v2.1.0"
