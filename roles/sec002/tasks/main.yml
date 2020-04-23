@@ -1,5 +1,8 @@
 ---
 # tasks file for roles/sec002
+
+- include_vars: emailsrvinfo.yml
+
 - debug:
     msg: 
     - "+++++++++++++++++++++++++++++++++++++++++++++++"  
@@ -28,3 +31,15 @@
     - "reboot_required = {{ resultat.reboot_required }}"
   when: >
     (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+
+- mail:
+    host: "{{ item.smtp }}"
+    port: "{{ item.port }}" 
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    to: "{{ item.to }}"
+    from: "{{ item.username }}"
+    subject: Playbook Task {{ sec002 }} completed!
+    body: Playbook Task {{ sec002 }} completed!
+  with_items: "{{ emailsrvinfo }}"
+  ignore_errors: yes

@@ -4,7 +4,7 @@ Ansible Security Compliance playbook
 This profile configures Red Hat Enterprise Linux 7 to the Security Compliance
 
 How to apply this remediation role:
-ansible-playbook -i hosts securitycompliance.yml
+ansible-playbook securitycompliance.yml -i hosts -ask-vault-pass
 
 Requirements
 Ansible version 2.5 or higher
@@ -26,4 +26,7 @@ TAGS informations
 
 How to find ansible_virtualization_role and ansible_virtualization_type
 $ ansible -i hosts -m setup mail | grep -i virt
+
+Other infos:
+
 
