@@ -13,7 +13,7 @@
     local_action: stat path=/Users/gamma/_ansible/securitycompliance/files/index.csv
     register: index_csv_file
   - debug:
-      msg: "The file: {{ index_csv_file }} exist!!!!!!!!!!!!!!!!!!!!!"
+      msg: "The file index.csv exist? = {{ index_csv_file.stat.exists }} "
   
   - name: "{{ sec001 }}"
     include_role:
