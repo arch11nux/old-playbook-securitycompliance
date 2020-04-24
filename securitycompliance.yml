@@ -9,6 +9,12 @@
     sec002: "{{ lookup('csvfile', 'sec002 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
     sec003: "{{ lookup('csvfile', 'sec003 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
   tasks:
+  - name: check if index.csv file exists
+    local_action: stat path=/Users/gamma/_ansible/securitycompliance/files/index.csv
+    register: index_csv_file
+  - debug:
+      msg: "The file: {{ index_csv_file }} exist!!!!!!!!!!!!!!!!!!!!!"
+  
   - name: "{{ sec001 }}"
     include_role:
       name: sec001
