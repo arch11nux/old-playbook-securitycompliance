@@ -1,3 +1,3 @@
-sec001;CIS_CentOS_Linux_7_Benchmark_v2.2.0
-sec002;CIS_Distribution_Independent_Linux_Benchmark_v2.0.0
-sec003;CIS_SUSE_Linux_Enterprise_12_Benchmark_v2.1.0
+sec001;SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS | Linux RH7
+sec002;SELINUX | NIST-800 | Identifier des controles NIST-800-171-cui | Linux RH7
+sec003;POSIX capabilities | Linux RH7

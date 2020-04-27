@@ -16,22 +16,28 @@
       msg: "The file index.csv exist? = {{ index_csv_file.stat.exists }} "
   
   - name: "{{ sec001 }}"
+    # SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS Linux RH7
     include_role:
       name: sec001
+    tags:
+      - cis
+      - RedHat7
+      - selinux
 
   - name: "{{ sec002 }}"
+      # SELINUX | NIST-800 | Identifier des controles NIST-800-171-cui Linux RH7
     include_role:
       name: sec002
+    tags:
+      - rhel7-role-nist-800-171-cui
+      - nist-800
+      - noncis
+      - RedHat7
 
   - name: "{{ sec003 }}"
+      # POSIX capabilities | Linux RH7
     include_role:
-      name: sec003
-
-
-
-# Ancienne configuration
-#  roles:
-#  - ctrlselinux
-#  - ctrlnist800
-#  - checkotherperm
-#  - colsecinfo
+      name: colsecinfo
+    tags:
+      - RedHat7
+      - LinEnum

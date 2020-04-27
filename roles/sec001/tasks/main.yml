@@ -1,19 +1,18 @@
 ---
 # tasks file for roles/sec001
-
 - include_vars: emailsrvinfo.yml
-
 - debug:
     msg: 
     - "+++++++++++++++++++++++++++++++++++++++++++++++"  
     - ">>>>> {{ sec001 | upper }} <<<<<"
     - "+++++++++++++++++++++++++++++++++++++++++++++++"
-
+#-------------------------------------------
 - name: "Enable SELinux -- {{ sec001 | upper }}"
   selinux:
     policy: targeted
     state: enforcing
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - selinux_state
     - high_severity
@@ -22,16 +21,147 @@
     - low_disruption
     - no_reboot_needed
     - CCE-27334-2
-  register: resultat
+  register: selinux_enforce
+# display TASK result
 - debug:
     msg: 
-    - "Enable SELinux - CCE-27334-2"
-    - "state = {{ resultat.state }}"
-    - "policy = {{ resultat.policy }}"
-    - "reboot_required = {{ resultat.reboot_required }}"
+    - "### TASK: Enable SELinux - CCE-27334-2 ###"
+    - "state = {{ selinux_enforce.state }}"
+    - "policy = {{ selinux_enforce.policy }}"
+    - "reboot_required = {{ selinux_enforce.reboot_required }}"
+    - "##########################################"
   when: >
     (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
-  
+#-------------------------------------------
+- name: "Ensure mcstrans is removed -- {{ sec001 | upper }}"
+  package:
+    name: mcstrans
+    state: absent
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - package_mcstrans_removed
+    - unknown_severity
+    - disable_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-80445-0
+  register: mcstrans_absent
+- debug:
+    msg:
+    - "### TASK: Ensure mcstrans is removed - CCE-80445-0 ###"
+    - "mcstrans is = {{ mcstrans_absent.results }}"
+    - "##########################################"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+#-------------------------------------------
+- name: "Ensure setroubleshoot is removed -- {{ sec001 | upper }}"
+  package:
+    name: setroubleshoot
+    state: absent
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - package_setroubleshoot_removed
+    - unknown_severity
+    - disable_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-80444-3
+  register: setroubleshoot_removed
+- debug:
+    msg:
+    - "### TASK: Ensure setroubleshoot is removed - CCE-80444-3 ###"
+    - "setroubleshoot is = {{ setroubleshoot_removed.results }}"
+    - "##########################################"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+#-------------------------------------------
+- name: "Ensure SELinux Not Disabled in /etc/default/grub -- {{ sec001 | upper }}"
+  replace:
+    dest: /etc/default/grub
+    regexp: selinux=0
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - grub2_enable_selinux
+    - medium_severity
+    - restrict_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-26961-3
+  register: selinux_not_disable
+- debug:
+    msg:
+    - "### TASK: Ensure SELinux Not Disabled in /etc/default/grub - CCE-26961-3 ###"
+    - "SELinux is = {{ selinux_not_disable }}"
+    - "##########################################"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+#-------------------------------------------
+- name: "XCCDF Value var_selinux_policy_name (promote to variable)  -- {{ sec001 | upper }}"
+  set_fact:
+    var_selinux_policy_name: !!str targeted
+  tags:
+    - always
+- name: Configure SELinux Policy
+  lineinfile:
+    path: /etc/sysconfig/selinux
+    regexp: ^SELINUXTYPE=
+    line: SELINUXTYPE={{ var_selinux_policy_name }}
+    create: true
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - selinux_policytype
+    - high_severity
+    - restrict_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-27279-9
+  register: xccdf_var_selinux_policy_name
+- debug:
+    msg:
+    - "### TASK: XCCDF Value var_selinux_policy_name (promote to variable) - CCE-27279-9 ###"
+    - "xccdf_var_selinux_policy_name changed = {{ xccdf_var_selinux_policy_name }}"
+    - "##########################################"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+#-------------------------------------------
+- name: "XCCDF Value var_selinux_state (promote to variable) -- {{ sec001 | upper }}"
+  set_fact:
+    var_selinux_state: !!str enforcing
+  tags:
+    - always
+- name: Ensure SELinux State is Enforcing
+  lineinfile:
+    path: /etc/sysconfig/selinux
+    regexp: ^SELINUX=
+    line: SELINUX={{ var_selinux_state }}
+    create: true
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - selinux_state
+    - high_severity
+    - restrict_strategy
+    - low_complexity
+    - low_disruption
+    - no_reboot_needed
+    - CCE-27334-2
+  register: xccdf_var_selinux_state
+- debug:
+    msg:
+    - "### TASK: XCCDF Value var_selinux_state (promote to variable) & SELinux State is Enforcing - CCE-27334-2 ###"
+    - "xccdf_var_selinux_state changed = {{ xccdf_var_selinux_state }}"
+    - "##########################################"
+  when: >
+    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+#-------------------------------------------    
 - mail:
     host: "{{ item.smtp }}"
     port: "{{ item.port }}" 

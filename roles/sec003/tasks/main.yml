@@ -1,45 +1,56 @@
 ---
 # tasks file for roles/sec003
-
 - include_vars: emailsrvinfo.yml
-
 - debug:
     msg: 
     - "+++++++++++++++++++++++++++++++++++++++++++++++"  
-    - ">>>>> {{ sec003 }} <<<<<"
+    - ">>>>> {{ sec003 | upper }} <<<<<"
     - "+++++++++++++++++++++++++++++++++++++++++++++++"
+#-------------------------------------------
 
-- name: "Enable SELinux -- {{ sec003 }}"
-  selinux:
-    policy: targeted
-    state: enforcing
-  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
-  tags:
-    - selinux_state
-    - high_severity
-    - restrict_strategy
-    - low_complexity
-    - low_disruption
-    - no_reboot_needed
-    - CCE-27334-2
-  register: resultat
-- debug:
-    msg: 
-    - "Enable SELinux - CCE-27334-2"
-    - "state = {{ resultat.state }}"
-    - "policy = {{ resultat.policy }}"
-    - "reboot_required = {{ resultat.reboot_required }}"
+- name: "1.1. Prérequis, Copier le script du checker -- {{ sec003 | upper }}"
+  become: True
+  synchronize:
+    src: "./roles/colsecinfo/files/colsecinfo.sh"
+    dest: "/tmp/"
+  changed_when: False
+
+- name: "copier script roles/colsecinfo/files/colsecinfo.sh dans /tmp -- {{ sec003 | upper }}"
+  become: True
+  copy:
+    src: ./roles/colsecinfo/files/colsecinfo.sh
+    dest: /tmp/colsecinfo.sh
+    owner: "ransible"
+    group: "users"
+    mode: 0750
+  changed_when: False
   when: >
     (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags:
+    - copy.script
+    - copy.colsecinfo.sh
 
+- name: "lancer script /tmp/colsecinfo.sh -- {{ sec003 | upper }}"
+  become: True
+  shell: "/tmp/colsecinfo.sh"
+  args:
+    chdir: /tmp 
+    executable: /bin/bash
+  changed_when: False
+  when: >
+      (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
+  tags: 
+    - execute.colsecinfo.sh
+
+#-------------------------------------------    
 - mail:
-    host: "{{ item.smtp }}"
-    port: "{{ item.port }}" 
-    username: "{{ item.username }}"
-    password: "{{ item.password }}"
-    to: "{{ item.to }}"
-    from: "{{ item.username }}"
-    subject: Playbook Task {{ sec003 }} completed!
-    body: Playbook Task {{ sec003 }} completed!
-  with_items: "{{ emailsrvinfo }}"
-  ignore_errors: yes
+  host: "{{ item.smtp }}"
+  port: "{{ item.port }}" 
+  username: "{{ item.username }}"
+  password: "{{ item.password }}"
+  to: "{{ item.to }}"
+  from: "{{ item.username }}"
+  subject: Playbook Task {{ sec003 }} completed!
+  body: Playbook Task {{ sec003 }} completed!
+with_items: "{{ emailsrvinfo }}"
+ignore_errors: yes

@@ -28,6 +28,9 @@ How to find ansible_virtualization_role and ansible_virtualization_type
 $ ansible -i hosts -m setup mail | grep -i virt
 
 Other infos:
+# to enable the log_plays callback plugin suppresses the standard screen output > /var/log/ansible/hosts/[hostname]
+    just uncomment the follow line in ansible.cfg 
+      #stdout_callback = log_plays  
 
 
 
