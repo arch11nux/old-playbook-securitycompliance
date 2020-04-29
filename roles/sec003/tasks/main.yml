@@ -1,56 +1,28 @@
 ---
 # tasks file for roles/sec003
-- include_vars: emailsrvinfo.yml
-- debug:
-    msg: 
-    - "+++++++++++++++++++++++++++++++++++++++++++++++"  
-    - ">>>>> {{ sec003 | upper }} <<<<<"
-    - "+++++++++++++++++++++++++++++++++++++++++++++++"
-#-------------------------------------------
-
-- name: "1.1. Prérequis, Copier le script du checker -- {{ sec003 | upper }}"
-  become: True
-  synchronize:
-    src: "./roles/colsecinfo/files/colsecinfo.sh"
-    dest: "/tmp/"
-  changed_when: False
-
-- name: "copier script roles/colsecinfo/files/colsecinfo.sh dans /tmp -- {{ sec003 | upper }}"
+- name: "1.1 Copier le script posix_capabilities.sh dans /tmp -- {{ sec003 | upper }}"
   become: True
   copy:
-    src: ./roles/colsecinfo/files/colsecinfo.sh
-    dest: /tmp/colsecinfo.sh
+    src: ./roles/sec003/files/posix_capabilities.sh
+    dest: /tmp/posix_capabilities.sh
     owner: "ransible"
     group: "users"
     mode: 0750
-  changed_when: False
+#    changed_when: True
   when: >
     (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - copy.script
-    - copy.colsecinfo.sh
+    - copy.posix_capabilities.sh
 
-- name: "lancer script /tmp/colsecinfo.sh -- {{ sec003 | upper }}"
+- name: "1.2 Lancer script /tmp/cposix_capabilities.sh -- {{ sec003 | upper }}"
   become: True
-  shell: "/tmp/colsecinfo.sh"
+  shell: "/tmp/posix_capabilities.sh"
   args:
     chdir: /tmp 
     executable: /bin/bash
-  changed_when: False
+#  changed_when: True
   when: >
       (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags: 
-    - execute.colsecinfo.sh
-
-#-------------------------------------------    
-- mail:
-  host: "{{ item.smtp }}"
-  port: "{{ item.port }}" 
-  username: "{{ item.username }}"
-  password: "{{ item.password }}"
-  to: "{{ item.to }}"
-  from: "{{ item.username }}"
-  subject: Playbook Task {{ sec003 }} completed!
-  body: Playbook Task {{ sec003 }} completed!
-with_items: "{{ emailsrvinfo }}"
-ignore_errors: yes
+    - execute.posix_capabilities.sh

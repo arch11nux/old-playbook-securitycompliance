@@ -10,10 +10,9 @@ Requirements
 Ansible version 2.5 or higher
 
 Role
-  - ctrlselinux
-  - ctrlnist800
-  - checkotherperm
-  - colsecinfo
+  - sec001
+  - sec002
+  - sec003
 
 Dependencies
 N/A
@@ -23,14 +22,7 @@ TAGS informations
   noncis = des contrôles qui ne sont pas dans le CIS
   nist-800 = des contrôles nist-800
   rh7 = relier au RedHat version 7
-
-How to find ansible_virtualization_role and ansible_virtualization_type
-$ ansible -i hosts -m setup mail | grep -i virt
-
-Other infos:
-# to enable the log_plays callback plugin suppresses the standard screen output > /var/log/ansible/hosts/[hostname]
-    just uncomment the follow line in ansible.cfg 
-      #stdout_callback = log_plays  
+  LinEnum = POSIX capabilities
 
 
 
