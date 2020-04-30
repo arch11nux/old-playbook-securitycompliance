@@ -1,3 +1,4 @@
 sec001;SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS | Linux RH7
 sec002;SELINUX | NIST-800 | Identifier des controles NIST-800-171-cui | Linux RH7
 sec003;POSIX capabilities | Linux RH7
+rh8-security-features;rh8-security-features: Security for RHEL8

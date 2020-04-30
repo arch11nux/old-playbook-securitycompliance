@@ -1,0 +1,14 @@
+---
+# tasks file for roles/rh8-security-features
+# variable var_go_execute = True (roles/rh8-security-features/defaults/main.yml)
+
+- name: fapolicyd | CONFIGURING APPLICATION WHITELISTS
+  import_tasks: fapolicyd.yml
+  when: 
+    var_go_execute
+    ansible_os_family == 'RedHat'
+  tags:
+    - config_fapolicyd
+    - redhat8
+    - rhel8
+

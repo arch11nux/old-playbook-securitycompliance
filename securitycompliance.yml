@@ -1,9 +1,9 @@
 ---
 # Ansible Playbook - check Security Compliance on Linux servers 
 - name: "Playing with Ansible"
-  hosts: esxcentos7
+  hosts: esxcentos
   port: 22
-  gather_facts: yes
+  gather_facts: true
   vars:
     sec001: "{{ lookup('csvfile', 'sec001 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
     sec002: "{{ lookup('csvfile', 'sec002 file=/Users/gamma/_ansible/securitycompliance/files/index.csv delimiter=;') }}"
@@ -14,11 +14,38 @@
     register: index_csv_file
   - debug:
       msg: "The file index.csv exist? = {{ index_csv_file.stat.exists }} "
+  
+  - name: "{{ sec001 }}"
+    # SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS Linux RH7
+    include_role:
+      name: sec001
+    tags:
+      - cis
+      - RedHat7
+      - selinux
+
+  - name: "{{ sec002 }}"
+      # SELINUX | NIST-800 | Identifier des controles NIST-800-171-cui Linux RH7
+    include_role:
+      name: sec002
+    tags:
+      - rhel7-role-nist-800-171-cui
+      - nist-800
+      - noncis
+      - RedHat7
 
   - name: "{{ sec003 }}"
       # POSIX capabilities | Linux RH7
     include_role:
-      name: sec003
+      name: colsecinfo
     tags:
       - RedHat7
       - LinEnum
+
+  - name: "{{ rh8-security-features }}"
+      # role rh8-security-features: Security for RHEL8 | Linux RH8
+    include_role:
+      name: rh8-security-features
+    tags:
+      - RedHat8
+      - RHEL8

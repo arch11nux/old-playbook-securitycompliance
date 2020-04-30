@@ -23,6 +23,3 @@ TAGS informations
   nist-800 = des contrôles nist-800
   rh7 = relier au RedHat version 7
   LinEnum = POSIX capabilities
-
-
-
