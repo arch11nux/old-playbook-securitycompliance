@@ -1,7 +1,7 @@
 ---
 # Ansible Playbook - check Security Compliance on Linux servers 
 - name: "Playing with Ansible"
-  hosts: esxcentos
+  hosts: servers
   port: 22
   gather_facts: true
   vars:
@@ -19,6 +19,8 @@
     # SELINUX | CIS | Identifier des controles SELinux qui sont dans le CIS Linux RH7
     include_role:
       name: sec001
+    when: >
+      (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
     tags:
       - cis
       - RedHat7
@@ -33,6 +35,8 @@
       - nist-800
       - noncis
       - RedHat7
+    when: >
+      (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   - name: "{{ sec003 }}"
       # POSIX capabilities | Linux RH7
@@ -41,6 +45,8 @@
     tags:
       - RedHat7
       - LinEnum
+    when: >
+      (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
   - name: "{{ rh8-security-features }}"
       # role rh8-security-features: Security for RHEL8 | Linux RH8
@@ -49,3 +55,5 @@
     tags:
       - RedHat8
       - RHEL8
+    when: >
+      (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "8")

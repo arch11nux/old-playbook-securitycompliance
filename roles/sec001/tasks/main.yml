@@ -173,3 +173,8 @@
     body: Playbook Task {{ sec001 }} completed!
   with_items: "{{ emailsrvinfo }}"
   ignore_errors: yes
+#-------------------------------------------
+- name: Generate report 
+  template: 
+    src=report.j2 
+    dest=report.txt 

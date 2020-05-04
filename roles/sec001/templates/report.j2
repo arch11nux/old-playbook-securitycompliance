@@ -1,0 +1,25 @@
+***********************************************************************
+PATCH REPORT FOR {{ inventory_hostname }}
+DATE:  {{ ansible_date_time.date }}
+TIME: {{ ansible_date_time.time }}
+-----------------------------------------------------------------------
+{# Determine if selinux enable  #}
+{% if selinux_enforce.state == 'enforcing' %}
+  {% set selinux_message = "selinux is Enabled" %}
+  {% set selinux_message2 = "selinux is Enforced" %}
+{% else %}
+  {% set selinux_message = "selinux is NOT Enabled" %}
+  {% set selinux_message2 = "selinux is NOT Enforced" %}
+{% endif %}
+
+
+Vendor:               {{ ansible_system_vendor }}
+Server Type:          {{ ansible_product_name }}
+O/S Distribution:     {{ ansible_distribution }}
+Kernel rev:           {{ ansible_kernel }}
+
+# Display selinux STATUS  #
+{{ selinux_message }}
+{{ selinux_message2 }}
+-----------------------------------------------------------------------
+************ END REPORT FOR {{ inventory_hostname }}
