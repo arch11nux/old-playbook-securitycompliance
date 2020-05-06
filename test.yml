@@ -1,0 +1,8 @@
+---
+# Ansible Playbook - check Security Compliance on Linux servers 
+- name: "Playing with Ansible"
+  hosts: servers
+  port: 22
+  gather_facts: true
+  roles:
+  - rh8-security-features

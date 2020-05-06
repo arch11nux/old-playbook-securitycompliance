@@ -1,24 +1,19 @@
 ---
 - name: Install the fapolicyd package
   yum:
-    name: fapolicyd
+    name: "fapolicyd"
     state: present
     update_cache: true
   become: true
-  when: ansible_os_family == 'RedHat'
-  register: yum_output
-- debug: var=yum_output
+  register: yum_fapolicyd_output
+- debug: var=yum_fapolicyd_output.msg
 #----------------------------------
 - name: Enabling fapolicyd service
-    service:
-      name: fapolicyd
-      enabled: yes
-    notify:
-      - name: restart fapolicyd
-  handlers:
-- name: restart fapolicyd
-    service:
-      name: fapolicyd
-      state: restarted
+  service:
+    name: fapolicyd
+    enabled: yes
+    state: restarted
+  register: service_fapolicyd_output
+- debug: var=service_fapolicyd_output.state
 #----------------------------------
-
+...

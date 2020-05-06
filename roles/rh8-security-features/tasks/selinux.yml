@@ -1,18 +1,10 @@
 ---
-# tasks file for roles/sec001
-- include_vars: emailsrvinfo.yml
-- debug:
-    msg: 
-    - "+++++++++++++++++++++++++++++++++++++++++++++++"  
-    - ">>>>> {{ sec001 | upper }} <<<<<"
-    - "+++++++++++++++++++++++++++++++++++++++++++++++"
+# file for roles/tasks/selinux.yml
 #-------------------------------------------
-- name: "Enable SELinux -- {{ sec001 | upper }}"
+- name: "Enable SELinux"
   selinux:
     policy: targeted
     state: enforcing
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - selinux_state
     - high_severity
@@ -30,15 +22,11 @@
     - "policy = {{ selinux_enforce.policy }}"
     - "reboot_required = {{ selinux_enforce.reboot_required }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 #-------------------------------------------
-- name: "Ensure mcstrans is removed -- {{ sec001 | upper }}"
+- name: "Ensure mcstrans is removed"
   package:
     name: mcstrans
     state: absent
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - package_mcstrans_removed
     - unknown_severity
@@ -53,15 +41,11 @@
     - "### TASK: Ensure mcstrans is removed - CCE-80445-0 ###"
     - "mcstrans is = {{ mcstrans_absent.results }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 #-------------------------------------------
-- name: "Ensure setroubleshoot is removed -- {{ sec001 | upper }}"
+- name: "Ensure setroubleshoot is removed"
   package:
     name: setroubleshoot
     state: absent
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - package_setroubleshoot_removed
     - unknown_severity
@@ -76,15 +60,11 @@
     - "### TASK: Ensure setroubleshoot is removed - CCE-80444-3 ###"
     - "setroubleshoot is = {{ setroubleshoot_removed.results }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 #-------------------------------------------
-- name: "Ensure SELinux Not Disabled in /etc/default/grub -- {{ sec001 | upper }}"
+- name: "Ensure SELinux Not Disabled in /etc/default/grub"
   replace:
     dest: /etc/default/grub
     regexp: selinux=0
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - grub2_enable_selinux
     - medium_severity
@@ -99,10 +79,8 @@
     - "### TASK: Ensure SELinux Not Disabled in /etc/default/grub - CCE-26961-3 ###"
     - "SELinux is = {{ selinux_not_disable }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 #-------------------------------------------
-- name: "XCCDF Value var_selinux_policy_name (promote to variable)  -- {{ sec001 | upper }}"
+- name: "XCCDF Value var_selinux_policy_name (promote to variable) "
   set_fact:
     var_selinux_policy_name: !!str targeted
   tags:
@@ -113,8 +91,6 @@
     regexp: ^SELINUXTYPE=
     line: SELINUXTYPE={{ var_selinux_policy_name }}
     create: true
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - selinux_policytype
     - high_severity
@@ -129,10 +105,8 @@
     - "### TASK: XCCDF Value var_selinux_policy_name (promote to variable) - CCE-27279-9 ###"
     - "xccdf_var_selinux_policy_name changed = {{ xccdf_var_selinux_policy_name }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
 #-------------------------------------------
-- name: "XCCDF Value var_selinux_state (promote to variable) -- {{ sec001 | upper }}"
+- name: "XCCDF Value var_selinux_state (promote to variable)"
   set_fact:
     var_selinux_state: !!str enforcing
   tags:
@@ -143,8 +117,6 @@
     regexp: ^SELINUX=
     line: SELINUX={{ var_selinux_state }}
     create: true
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
   tags:
     - selinux_state
     - high_severity
@@ -159,25 +131,5 @@
     - "### TASK: XCCDF Value var_selinux_state (promote to variable) & SELinux State is Enforcing - CCE-27334-2 ###"
     - "xccdf_var_selinux_state changed = {{ xccdf_var_selinux_state }}"
     - "##########################################"
-  when: >
-    (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
-#-------------------------------------------    
-- mail:
-    host: "{{ item.smtp }}"
-    port: "{{ item.port }}" 
-    username: "{{ item.username }}"
-    password: "{{ item.password }}"
-    to: "{{ item.to }}"
-    from: "{{ item.username }}"
-    subject: Playbook Task {{ sec001 }} completed!
-    body: Playbook Task {{ sec001 }} completed!
-  with_items: "{{ emailsrvinfo }}"
-  ignore_errors: yes
 #-------------------------------------------
-- name: Generate report 
-  template: 
-    src: report.j2 
-    dest: report.txt
-    owner: ransible
-    group: ransible
-    mode: 0640
+...

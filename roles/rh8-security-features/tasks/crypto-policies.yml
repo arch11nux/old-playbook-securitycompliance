@@ -1,0 +1,7 @@
+---
+- name: obtain OS version
+  shell: cat /etc/centos-release
+  register: result
+
+- name: print OS version
+  debug: var=result.stdout

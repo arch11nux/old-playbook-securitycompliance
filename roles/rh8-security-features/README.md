@@ -18,16 +18,42 @@ Dependencies
 
 N/A
 
-Example Playbook
-----------------
+How is working:
+===============
+# Just check: 
+  # variable var_go_execute = False (roles/rh8-security-features/defaults/main.yml)
+  ansible-playbook securitycompliance.yml -i hosts --ask-become-pass  --tags "rh8-security-features"
+  - genarate a local report on each server (~report.out)
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+# check & apply: 
+  # variable var_go_execute = True (roles/rh8-security-features/defaults/main.yml)
+  ansible-playbook securitycompliance.yml -i hosts --ask-become-pass  --tags "rh8-security-features"
+  - genarate a local report on each server (~report.out)
 
-    - hosts: servers
-      roles:
-         - rh8-security-features
-            default
-              - main.yml
-            tasks
-              - main.yml
-              - fapolicyd.yml
+
+Structure:
+==========
+roles/rh8-security-features
+  defaults/main.yml
+  templates/report.j2
+  tasks/main.yml
+    tasks/fapolicyd.yml
+    tasks/crypto-policies.yml
+    tasks/firewalld.yml
+    tasks/selinux.yml
+    tasks/linenum.yml
+    tasks/auditd.yml
+    tasks/obsolete-services.yml
+
+TAGS:
+=====
+- rh8-security-features
+- redhat8
+# every task inside the role have it's own TAG
+  - fapolicyd
+  - crypto-policies
+  - firewalld
+  - selinux
+  - linenum
+  - auditd
+  - obsolete-services
