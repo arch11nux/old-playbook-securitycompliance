@@ -3,3 +3,4 @@
 
 # vars : change TRUE /FALSE
 var_go_execute: True
+var_check_mode: yes

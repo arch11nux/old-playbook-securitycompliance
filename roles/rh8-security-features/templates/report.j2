@@ -16,6 +16,8 @@ TIME: {{ ansible_date_time.time }}
 Vendor:               {{ ansible_system_vendor }}
 Server Type:          {{ ansible_product_name }}
 O/S Distribution:     {{ ansible_distribution }}
+O/S version:          {{ hostvars[inventory_hostname].ansible_distribution_version }}
+----------->          {{ result_os_version.stdout }}
 Kernel rev:           {{ ansible_kernel }}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

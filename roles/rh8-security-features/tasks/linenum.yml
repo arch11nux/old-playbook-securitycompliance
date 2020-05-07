@@ -1,7 +1,17 @@
 ---
-- name: obtain OS version
-  shell: cat /etc/centos-release
-  register: result
+# file for roles/tasks/linenum.yml
+- name: "1.1 Copier le script posix_capabilities.sh dans /tmp"
+  become: True
+  copy:
+    src: ./roles/sec003/files/posix_capabilities.sh
+    dest: /tmp/posix_capabilities.sh
+    owner: "ransible"
+    group: "users"
+    mode: 0750
 
-- name: print OS version
-  debug: var=result.stdout
+- name: "1.2 Lancer script /tmp/cposix_capabilities.sh"
+  become: True
+  shell: "/tmp/posix_capabilities.sh"
+  args:
+    chdir: /tmp 
+    executable: /bin/bash
